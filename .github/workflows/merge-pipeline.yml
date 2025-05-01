@@ -39,6 +39,6 @@ jobs:
 
           # Stage, Commit en push de changes
           git add .
-          COMMIT_MESSAGE="Backup commit from pull request from branch ${{github.head_ref}} to main on $(date)"
+          COMMIT_MESSAGE="Backup commit from pull request from branch '${{ github.head_ref || github.ref_name }}' to main on $(date)"
           git commit -m "$COMMIT_MESSAGE" || echo "niks om te commiten"
           git push origin main
