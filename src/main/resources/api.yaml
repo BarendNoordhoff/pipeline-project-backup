@@ -1,0 +1,61 @@
+openapi: "3.0.3" # safer for generator
+info:
+  title: API Title
+  version: "1.0"
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /card:
+    get:
+      tags:
+        - card
+      summary: Returns a card
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card'
+        '404':
+          description: NOT_FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/problem_detail'
+components:
+  schemas:
+    card_type:
+      type: string
+      enum:
+        - INSTANT
+        - SORCERY
+        - ARTIFACT
+        - ENCHANTMENT
+        - CREATURE
+    card:
+      type: object
+      properties:
+        id:
+          type: integer
+        cardName:
+          type: string
+        cardType:
+          $ref: '#/components/schemas/card_type'
+        manaValue:
+          type: integer
+    problem_detail:
+      type: object
+      properties:
+        titel:
+          type: string
+        status:
+          type: integer
+        description:
+          type: string
+    ok:
+      type: object
+      additionalProperties:
+        type: string
+      example:
+        status: ok

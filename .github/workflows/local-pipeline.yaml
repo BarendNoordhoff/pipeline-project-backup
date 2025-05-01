@@ -1,0 +1,25 @@
+name: Check code health locally
+concurrency:
+  group: pirate-king
+on:
+  push:
+    tags-ignore:
+      - "*"
+    branches-ignore:
+      - "main"
+
+jobs:
+  check_if_maven_compiles:
+    name: Maven compile
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: maven
+      - name: compile maven
+        run: "mvn compile"
