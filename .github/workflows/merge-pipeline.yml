@@ -1,16 +1,9 @@
-name: merge-pipeline.yml
+name: Push the current changes to the backup repo
 concurrency:
   group: pirate-king
-# TODO: de pipeline op pull request afvuren en niet op push, is nu aangepast voor gemak van testen
-#on:
-#  pull_request:
-#    branches:
-#      - "main"
 on:
   push:
-    tags-ignore:
-      - "*"
-    branches-ignore:
+    branches:
       - "main"
 
 jobs:
