@@ -1,0 +1,27 @@
+name: sonar.yml
+on:
+  workflow_call:
+    inputs:
+      SONAR_TOKEN:
+        required: true
+        type: string
+      PROJECT_KEY:
+        required: true
+        type: string
+      ORGANIZATION:
+        required: true
+        type: string
+
+jobs:
+  sonar:
+    name: Sonar
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: sonar token
+        run: echo ${{ inputs.SONAR_TOKEN }}
+      - name: project key
+        run: echo ${{ inputs.PROJECT_KEY }}
+      - name: org
+        run: echo ${{ inputs.ORGANIZATION }}

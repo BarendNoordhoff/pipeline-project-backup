@@ -1,6 +1,7 @@
 name: Push the current changes to the backup repo
 concurrency:
   group: pirate-king
+
 on:
   push:
     branches:
@@ -25,7 +26,7 @@ jobs:
 
           # Kopieer alle bestanden die nu in deze repo staan naar de andere repo.
           # (pakt automatisch de branch waarop is gepushed)
-          rsync -av --exclude='.git' --exclude='pipeline-project-backup' ./ ./pipeline-project-backup/
+          rsync -av --exclude='/.git' --exclude='pipeline-project-backup' ./ ./pipeline-project-backup/
 
           # Gaat in de backup repo.
           cd pipeline-project-backup
