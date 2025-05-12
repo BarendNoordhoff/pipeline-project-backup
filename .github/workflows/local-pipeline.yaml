@@ -1,6 +1,7 @@
 name: Check code health locally
 concurrency:
   group: pirate-king
+
 on:
   push:
     tags-ignore:
@@ -27,7 +28,8 @@ jobs:
     name: sonar
     uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
     with:
-      SONAR_TOKEN: 'token'
-      PROJECT_KEY: 'key'
-      ORGANIZATION: 'org'
+      PROJECT_KEY: "BarendNoordhoff_pipeline-project"
+      ORGANIZATION: 'barendnoordhoff'
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 

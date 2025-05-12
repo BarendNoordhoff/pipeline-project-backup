@@ -2,15 +2,15 @@ name: sonar.yml
 on:
   workflow_call:
     inputs:
-      SONAR_TOKEN:
-        required: true
-        type: string
       PROJECT_KEY:
         required: true
         type: string
       ORGANIZATION:
         required: true
         type: string
+    secrets:
+      SONAR_TOKEN:
+        required: true
 
 jobs:
   sonar:
@@ -19,9 +19,19 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: sonar token
-        run: echo ${{ inputs.SONAR_TOKEN }}
-      - name: project key
-        run: echo ${{ inputs.PROJECT_KEY }}
-      - name: org
-        run: echo ${{ inputs.ORGANIZATION }}
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B clean verify
+      - name: sonar
+        uses: sonarsource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          INPUT_PROJECTBASEDIR: src
+        with:
+          projectKey: ${{ inputs.PROJECT_KEY }}
+          organization: ${{ inputs.ORGANIZATION }}
