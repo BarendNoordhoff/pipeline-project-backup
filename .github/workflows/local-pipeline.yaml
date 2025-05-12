@@ -25,14 +25,9 @@ jobs:
         run: "mvn verify"
   verify_sonar:
     name: sonar
-    runs-on: ubuntu-22.04
-    steps:
-    - name: checkout
-      uses: actions/checkout@v4
-    - name: Sonarqube
-      uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar@main
-      with:
-        SONAR_TOKEN: 'token'
-        PROJECT_KEY: 'key'
-        ORGANIZATION: 'org'
+    uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar.yml@main
+    with:
+      SONAR_TOKEN: 'token'
+      PROJECT_KEY: 'key'
+      ORGANIZATION: 'org'
 
