@@ -30,7 +30,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4
     - name: Sonarqube
-      uses: BarendNoordhoff//pipeline-project/.github/workflows/sonar/sonar.yml@main
+      uses: BarendNoordhoff/pipeline-project/.github/workflows/sonar@main
       with:
         SONAR_TOKEN: 'token'
         PROJECT_KEY: 'key'

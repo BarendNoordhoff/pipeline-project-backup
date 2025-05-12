@@ -12,16 +12,14 @@ on:
         required: true
         type: string
 
-jobs:
-  sonar:
-    name: Sonar
-    runs-on: ubuntu-22.04
-    steps:
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: sonar token
-        run: echo ${{ inputs.SONAR_TOKEN }}
-      - name: project key
-        run: echo ${{ inputs.PROJECT_KEY }}
-      - name: org
-        run: echo ${{ inputs.ORGANIZATION }}
+runs:
+  using: composite
+  steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: sonar token
+      run: echo ${{ inputs.SONAR_TOKEN }}
+    - name: project key
+      run: echo ${{ inputs.PROJECT_KEY }}
+    - name: org
+      run: echo ${{ inputs.ORGANIZATION }}
