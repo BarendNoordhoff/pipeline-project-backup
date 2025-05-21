@@ -1,9 +1,9 @@
-openapi: "3.0.3" # safer for generator
+openapi: "3.0.3"
 info:
-  title: API Title
-  version: "1.0"
+  title: Card game
+  version: "0.1"
 servers:
-  - url: https://api.server.test/v1
+  - url: https://localhost:8080
 paths:
   /card:
     get:
