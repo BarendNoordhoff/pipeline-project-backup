@@ -32,4 +32,21 @@ jobs:
       ORGANIZATION: 'barendnoordhoff'
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  send_notification:
+    name: Send notification
+    runs-on: ubuntu-22.04
+    if: ${{ failure() }}
+    needs:
+      - check_if_maven_compiles
+      - verify_sonar
+    steps:
+      - uses: actions/checkout@v4
+      - name: Discord webhook
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          embed-author-name: ${{ github.actor }} - ${{ github.ref_name }}
+          embed-title: The pipeline to push to branch ${{ github.ref_name }} failed
+          embed-description: ${{ github.action_status }}
+          embed-footer-text: This is a automated message from the pipeline beep boop.
 

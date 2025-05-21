@@ -20,6 +20,6 @@ public class CardService {
     }
 
     public int isOneTwo() {
-        return  1;
+        return 1 + 4 + 5;
     }
 }

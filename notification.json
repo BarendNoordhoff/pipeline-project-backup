@@ -1,0 +1,19 @@
+{
+  "content": null,
+  "embeds": [
+    {
+      "title": "The pipeline to push to branch {{}} failed.",
+      "description": "Error{}",
+      "color": 5814783,
+      "author": {
+        "name": "GitHub - Main",
+        "url": "https://github.com/BarendNoordhoff/pipeline-project"
+      },
+      "footer": {
+        "text": "This is a automated message from the pipeline beep boop."
+      },
+      "timestamp": "2025-05-15T14:09:00.000Z"
+    }
+  ],
+  "attachments": []
+}
